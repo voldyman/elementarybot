@@ -5,6 +5,7 @@ require 'cgi'
 require 'json'
 require 'net/http'
 require "./MemoPlugin"
+require "./config.rb"
 
 class Memo < Struct.new(:nick, :channel, :text, :time)
   def to_s
@@ -93,6 +94,10 @@ bot = Cinch::Bot.new do
     end
   end
 
+  on :connect do |m|
+    User('nickserv').send(identify_msg)
+  end
+  
   on :join do |m|
     if m.channel == "#rindia"
       # tell user about the channel change
