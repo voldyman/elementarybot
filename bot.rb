@@ -86,9 +86,19 @@ bot = Cinch::Bot.new do
         text = "Welcome to the /r/India's channel. This place is for full timepass. "
         text
     end
+
+    def channel_moved()
+      text = "Hi, this channel is inactive. Please join ##rindia instead"
+      text
+    end
   end
 
   on :join do |m|
+    if m.channel == "#rindia"
+      # tell user about the channel change
+      m.user.notice(channel_moved())
+    end
+    
     if m.channel == "##rindia"
         #inform users
         m.user.notice(information())
