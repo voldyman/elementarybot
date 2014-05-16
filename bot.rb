@@ -30,7 +30,7 @@ bot = Cinch::Bot.new do
   helpers do
     def urban_dict(query)
       url = "http://www.urbandictionary.com/define.php?term=#{CGI.escape(query)}"
-      CGI.unescape_html Nokogiri::HTML(open(url)).at("div.definition").text.gsub(/\s+/, ' ') rescue nil
+      CGI.unescape_html Nokogiri::HTML(open(url)).at("div.meaning").text.gsub(/\s+/, ' ') rescue nil
     end
 
     def chuck()
