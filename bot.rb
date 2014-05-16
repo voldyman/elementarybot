@@ -21,8 +21,8 @@ end
 bot = Cinch::Bot.new do
   configure do |c|
     c.server   = "chat.freenode.net"
-    c.nick     = "MinionBot_testing"
-    c.channels = ["#elementary-dev","#elementary","#elementary-offtopic","#elementary-apps","#elementary-translators","#elementary-de"]
+    c.nick     = "IndBot"
+    c.channels = ["##rindia", "#rindia"]
     @@users = {}
     @@memos = Memos.new
   end
@@ -82,29 +82,14 @@ bot = Cinch::Bot.new do
       return result['slip']['advice']
     end
 
-# don't work    
-# def google(query)
-#      url = "http://www.google.com/search?q=#{CGI.escape(query)}"
-#      res = Nokogiri::HTML(open(url))
-#      title = res.at("h3.r").text
-#      link = res.css('h3.r').first
-#      link = link.to_s.match(/q=(.*)&amp;sa/m)[1].strip
-#      CGI.unescape_html "#{title} - #{link}"
-#      rescue
-#        "No results found"
-#      else
-#        CGI.unescape_html "#{title} - #{link}"
-#    end
-
     def information()
-        text = "Welcome to the elementary developer channel. This place is for elementary OS development discussion ONLY. For support join #elementary.
-This channel is logged. For the location of logs please check the message of the day."
+        text = "Welcome to the /r/India's channel. This place is for full timepass. "
         text
     end
   end
 
   on :join do |m|
-    if m.channel == "#elementary-dev"
+    if m.channel == "##rindia"
         #inform users
         m.user.notice(information())
     end
@@ -191,7 +176,7 @@ This channel is logged. For the location of logs please check the message of the
   end
 
   on :message, /^!help/ do |m, query|
-    m.reply "#{m.user.nick}: I know these Commands: !google <searchterm>, !lp <name>, !ot <name>, !support <name>, !web <name>, !askm <name>, !give <name> <command>, !bug <number>, !seen <nick>, !hello, !memo <nick> <message>, !chuck, !love <nick>, !nomodeset <nick>, !randomadvice, !advice <term>, !weatherc <city,land>, !weatherf <city,land>, !telloff <nick>, !gtk <gtk widget>, !github <author> <project name>, !report <project> | <nick>, "
+    m.reply "#{m.user.nick}: I know these Commands: !google <searchterm>, !ot <name>, !web <name>, !askm <name>, !seen <nick>, !hello, !memo <nick> <message>, !chuck, !love <nick>, !randomadvice, !advice <term>, !weatherc <city,land>, !weatherf <city,land>, !telloff <nick>, "
   end
 
   on :message, /^!hello/ do |m, query|
@@ -210,46 +195,6 @@ This channel is logged. For the location of logs please check the message of the
     end
   end
 
-  on :message, /^!nomodeset (.+)/ do |m, nick|
-    if nick == bot.nick
-       m.reply "#{nick}: That's me!"
-    else
-       m.reply "#{nick}: A common kernel (boot)parameter is nomodeset, which is needed for some graphic cards that otherwise boot into a black screen or show corrupted splash screen. See http://ubuntuforums.org/showthread.php?t=1613132 on how to use this parameter"
-    end
-  end
-
-  on :message, /^!support (.+)/ do |m, nick|
-    if nick == bot.nick
-       m.reply "#{nick}: That's me!"
-    else
-       m.reply "#{nick}: You are talking about support stuff! Please join #elementary"
-    end
-  end
-
-  on :message, /^!askm (.+)/ do |m, nick|
-    if nick == bot.nick
-       m.reply "#{nick}: That's me!"
-    else
-       m.reply "#{nick}: Don't ask to ask a question, just ask"
-    end
-  end
-
-  on :message, /^!give (.+?) (.+)/ do |m, nick, command|
-    if nick == bot.nick
-       m.reply "#{nick}: That's me!"
-    else
-       m.reply "#{nick}: Open a terminal (Ctrl+Alt+T) and type: '#{command}'. If there are any errors, please paste it with a paste-service like pastebin.com"
-    end
-  end
-  
-  on :message, /^!web (.+)/ do |m, nick|
-    if nick == bot.nick
-       m.reply "#{nick}: That's me!"
-    else
-       m.reply "#{nick}: You are talking about website related stuff! Please join #elementary-web"
-    end
-  end
-
   on :message, /^!nick (.+)/ do |m, nick|
     if nick == bot.nick
        m.reply "#{nick}: That's me!"
@@ -264,29 +209,6 @@ This channel is logged. For the location of logs please check the message of the
     else
       m.reply "#{nick}: You are being annoying. Accept this bribery and shut up."
     end
-  end
-
-  on :message, /^!report (.+)/ do |m, project|
-    m.reply "https://bugs.launchpad.net/#{project}/+filebug"
-  end
-
-  on :message, /^!report (.+) \| (.+)/ do |m, project, nick|
-    m.reply "#{nick}: https://bugs.launchpad.net/#{project}/+filebug"
-  end
-  on :message, /(:?bug|\#) *([0-9]+)/ do |m, bug|
-    m.reply "https://bugs.launchpad.net/bugs/#{bug}"
-  end
-
-  on :message, /lp:([a-zA-Z0-9\/\-\+]+)/ do |m, project|
-    m.reply "https://code.launchpad.net/+branch/#{project}"
-  end
-
-  on :message, /lp:~([a-zA-Z0-9\/\-\+]+)/ do |m, branch|
-    m.reply "https://code.launchpad.net/~#{branch}"
-  end
-
-  on :message, /ppa:([a-zA-Z0-9\-]+)\/([a-zA-Z0-9\-]+)/ do |m, ppa|
-    m.reply "https://code.launchpad.net/~#{ppa}"
   end
 end
 
