@@ -1,6 +1,9 @@
-elementarybot
+rIndiaBot
 =============
 
+forked from elementary bot by elementary developers.
+
+This bot is used at ##rindia at irc.freenode.net.
 
 
 License
@@ -19,4 +22,4 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-Authors: lampe2 <michael@lazarski.me>
+Authors: lampe2 <michael@lazarski.me>, Akshay Shekher <voldyman666@gmail.com>
