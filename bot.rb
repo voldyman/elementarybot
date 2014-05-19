@@ -155,8 +155,8 @@ bot = Cinch::Bot.new do
   end
 
   on :message, /^!google (.+)/ do |m, query|
-    query = query.squish.gsub(' ', '+')
-    m.reply "Search for solutions: 'http://www.google.com/search?q=#{query}'"
+    nquery = query.gsub(' ', '+')
+    m.reply "Search for solutions: 'http://www.google.com/search?q=#{nquery}'"
   end
 
   on :message, /^!lp (.+)/ do |m,query|
